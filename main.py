@@ -1,4 +1,5 @@
 import telebot
+# Привет всем
 
 bot = telebot.TeleBot('6213357069:AAFrHUa2DaU0XdiMOAvibA_Tb3iBuwQin2Y')
 
