@@ -25,7 +25,8 @@ def solve_voice_message(message):
     #TODO: find a better way to convert ogg's to wav's
     with open('example.ogg', 'wb') as new_file:
         new_file.write(file)
-    #TODO: unhardcode this    
+    #TODO: unhardcode this
+    # And also for some reason WAV's are heavier than oggs. Oof    
     data, samplerate = sf.read('example.ogg')
     sf.write('example.wav',data, samplerate)
 
