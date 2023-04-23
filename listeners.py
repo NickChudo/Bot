@@ -1,7 +1,8 @@
 #Class where you can put commands and message respondings
 class listener:
     doListen = False
-    messagelist = {"/start" : "Starting listener...", "/help" : "Just throw here voice message"}
+    messagelist = {}
+    cmd_descriptions = {"/start" : "Starts listener.", "/stop" : "Stops listener.", "/help" : "Get all commands."}
 
     def disable_listener(self):
         self.doListen = False
@@ -13,9 +14,12 @@ class listener:
 
     def get_current_commands(self):
         response = ""
+        for i in self.cmd_descriptions.keys():
+            response += f"{i} : {self.cmd_descriptions[i]} \n"
+        return response
 
 
-    cmdlist = {"/start" : enable_listener, "/stop" : disable_listener}    
+    cmdlist = {"/start" : enable_listener, "/stop" : disable_listener, "/help" : get_current_commands}    
 
     #Приводит поступающие команды в соответствие с ответом
     def get_response_for_text_message(self, message):
