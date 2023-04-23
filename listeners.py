@@ -3,11 +3,19 @@ class listener:
     doListen = False
     messagelist = {"/start" : "Starting listener...", "/help" : "Just throw here voice message"}
 
-    def toggle_listener(self):
-        self.doListen = not(self.doListen)
-        return f"Changed state, now it's {self.doListen}"
+    def disable_listener(self):
+        self.doListen = False
+        return f"Listener disabled, no voice messages will get their response"
+    
+    def enable_listener(self):
+        self.doListen = True
+        return f"Listener enabled, you can send voice messages now."
 
-    cmdlist = {"/start" : toggle_listener}    
+    def get_current_commands(self):
+        response = ""
+
+
+    cmdlist = {"/start" : enable_listener, "/stop" : disable_listener}    
 
     #Приводит поступающие команды в соответствие с ответом
     def get_response_for_text_message(self, message):
