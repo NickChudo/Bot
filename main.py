@@ -3,6 +3,7 @@ import soundfile as sf
 import listeners
 from modelinit import ModelInit
 
+
 bot = telebot.TeleBot('6213357069:AAFrHUa2DaU0XdiMOAvibA_Tb3iBuwQin2Y')
 
 samplerate = 16000 #set this constant to that number which is compatible with network, yep.
