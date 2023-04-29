@@ -60,7 +60,7 @@ class ModelInit:
             use_cuda = torch.cuda.is_available()
             if use_cuda:
                 print('using cuda')
-                self.device = torch.device("cuda")
+                self.device = torch.device("cuda")                   
             else:
                 print('Невозможно использовать GPU, выбран CPU')
                 self.device = torch.device("cpu")
@@ -69,10 +69,11 @@ class ModelInit:
             print('Использовано CPU')
             
         self.model = SpeechRecognitionModel(35)
-        self.model.load_state_dict(torch.load(path))
+        self.model.load_state_dict(torch.load(path, map_location=self.device))
         self.model.to(self.device)
         self.model.eval()
-        self.audio_transforms = torchaudio.transforms.MelSpectrogram()
+        self.audio_transforms = torchaudio.transforms.MelSpectrogram().to(self.device)
+       
         
         self.char_map = {"а": 0, "б": 1, "в": 2, "г": 3, "д": 4, "е": 5, "ё": 6, "ж": 7, "з": 8, "и": 9, "й": 10,
                   "к": 11, "л": 12, "м": 13, "н": 14, "о": 15, "п": 16, "р": 17, "с": 18, "т": 19, "у": 20,
@@ -93,7 +94,7 @@ class ModelInit:
     def predict(self, audio_path):
         audio = librosa.load(audio_path, sr=16000)[0]
         audio = audio[np.newaxis, :]
-        audio = torch.Tensor(audio)
+        audio = torch.Tensor(audio).to(self.device)
         audio = self.audio_transforms(audio).squeeze(0)
         spectrogram_tensor = audio.unsqueeze(0).unsqueeze(0)
         spectrogram_tensor.to(self.device)

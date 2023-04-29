@@ -10,7 +10,7 @@ samplerate = 16000 #set this constant to that number which is compatible with ne
 messagelist = {"/start" : "Starting listener...", "/help" : "Just throw here voice message"}
 
 is_started = False
-model = ModelInit(path='model.pth', device_type='cpu')
+model = ModelInit(path='model.pth', device_type='cuda')
 listener = listeners.listener()
 
 @bot.message_handler(content_types=['text'])
