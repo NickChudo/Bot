@@ -5,10 +5,10 @@
 - Can be hosted and used by just launch
 
 ## Technical info
-- Currently works only with CPU
+- Currently works with CPU and CUDA
 
 ## TODO
-- Add support for CUDA
+- Soon TM
 
 ## Libraries
 
