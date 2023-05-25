@@ -2,7 +2,7 @@
 class listener:
     doListen = False
     messagelist = {}
-    cmd_descriptions = {"/start" : "Starts listener.", "/stop" : "Stops listener.", "/help" : "Get all commands."}
+    cmd_descriptions = {"Send me voice message" : "Recieve text message (decrypted)", "/start" : "Starts listener.", "/stop" : "Stops listener.", "/help" : "Get all commands."}
 
     def disable_listener(self):
         self.doListen = False
