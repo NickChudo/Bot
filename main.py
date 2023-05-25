@@ -8,7 +8,6 @@ key = keyfile.readline()
 keyfile.close()
 
 bot = telebot.TeleBot(key)
-
 samplerate = 16000 #set this constant to that number which is compatible with network, yep.
 
 messagelist = {"/start" : "Starting listener...", "/help" : "Just throw here voice message"}
