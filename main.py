@@ -22,7 +22,10 @@ def get_text_messages(message):
 
 @bot.message_handler(content_types=['voice'])
 def solve_voice_message(message):
-    bot.send_message(message.from_user.id, "Recieved voice message. Nice.")
+    if(not is_started):
+        bot.send_message(message.from_user.id, "Activate me with /start first")
+        return
+    bot.send_message(message.from_user.id, "Recieved voice message, processing...")
     try:
         file_metadata = bot.get_file(message.voice.file_id)
         file = bot.download_file(file_metadata.file_path)
@@ -32,15 +35,18 @@ def solve_voice_message(message):
         sf.write('buffer.wav',data, samplerate)
         returnal = model.predict('buffer.wav')
         if(len(returnal) == 0):
-            bot.send_message(message.from_user.id, "This message is empty")
+            bot.send_message(message.from_user.id, "Network has created empty response.")
             return
         bot.send_message(message.from_user.id, returnal)
     except:
-        bot.send_message(message.from_user.id, "Error has been occurred. Please contact us at https://github.com/NickChudo/Bot/issues")
+        bot.send_message(message.from_user.id, "Error has occurred. Please contact us at https://github.com/NickChudo/Bot/issues")
 
 @bot.message_handler(content_types=['document'])
 def solve_audio_message(message):
-    bot.send_message(message.from_user.id, "Recieved document message. Nice.")
+    if(not is_started):
+        bot.send_message(message.from_user.id, "Activate me with /start first")
+        return
+    bot.send_message(message.from_user.id, "Recieved document message, processing...")
     try:
         file_metadata = bot.get_file(message.document.file_id)
         file = bot.download_file(file_metadata.file_path)
@@ -50,11 +56,11 @@ def solve_audio_message(message):
         sf.write('buffer.wav',data, samplerate)
         returnal = model.predict('buffer.wav')
         if(len(returnal) == 0):
-            bot.send_message(message.from_user.id, "This message is empty")
+            bot.send_message(message.from_user.id, "Network has created empty response.")
             return
         bot.send_message(message.from_user.id, returnal)
     except:
-        bot.send_message(message.from_user.id, "Error has been occurred. Please contact us at https://github.com/NickChudo/Bot/issues")
+        bot.send_message(message.from_user.id, "Error has occurred. Please contact us at https://github.com/NickChudo/Bot/issues")
 
 
 bot.infinity_polling(timeout=10, long_polling_timeout = 5)
