@@ -31,6 +31,9 @@ def solve_voice_message(message):
         data, samplerate = sf.read('buffer.ogg')
         sf.write('buffer.wav',data, samplerate)
         returnal = model.predict('buffer.wav')
+        if(len(returnal) == 0):
+            bot.send_message(message.from_user.id, "This message is empty")
+            return
         bot.send_message(message.from_user.id, returnal)
     except:
         bot.send_message(message.from_user.id, "Error has been occurred. Please contact us at https://github.com/NickChudo/Bot/issues")
@@ -46,6 +49,9 @@ def solve_audio_message(message):
         data, samplerate = sf.read('1.wav')
         sf.write('buffer.wav',data, samplerate)
         returnal = model.predict('buffer.wav')
+        if(len(returnal) == 0):
+            bot.send_message(message.from_user.id, "This message is empty")
+            return
         bot.send_message(message.from_user.id, returnal)
     except:
         bot.send_message(message.from_user.id, "Error has been occurred. Please contact us at https://github.com/NickChudo/Bot/issues")
