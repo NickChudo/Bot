@@ -35,6 +35,7 @@ Other packages can be installed using "pip install"
 Install torch and torchaudio from https://pytorch.org/
 
 Install libsndfile1 from "lunar" repository
+
 Example:
 
 ```sudo add-apt-repository 'deb http://cz.archive.ubuntu.com/ubuntu lunar main'```
@@ -46,7 +47,7 @@ https://packages.ubuntu.com/lunar/libsndfile1
 
 Other packages can be installed normally via "pip install"
 
-##How to launch
+## How to launch
 
 - Add file key.txt to your program's root folder (where main.py stored)
 - Fill it with telegram bot API key
