@@ -60,4 +60,4 @@ def solve_audio_message(message):
         bot.send_message(message.from_user.id, "Error has occurred. Please contact us at https://github.com/NickChudo/Bot/issues")
 
 
-bot.infinity_polling(timeout=10, long_polling_timeout = 5)
+bot.infinity_polling(timeout=5, long_polling_timeout = 2)
