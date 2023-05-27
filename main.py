@@ -19,7 +19,7 @@ def get_text_messages(message):
 
 @bot.message_handler(content_types=['voice'])
 def solve_voice_message(message):
-    if(not listener.doListen == False):
+    if(listener.doListen == False):
         bot.send_message(message.from_user.id, "Activate me with /start first!")
         return
     bot.send_message(message.from_user.id, "Recieved voice message, processing...")
