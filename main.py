@@ -10,9 +10,6 @@ keyfile.close()
 bot = telebot.TeleBot(key)
 samplerate = 16000 
 
-messagelist = {"/start" : "Starting listener...", "/help" : "Just throw here voice message"}
-
-is_started = False
 model = ModelInit(path='model.pth', device_type='cpu')
 listener = listeners.listener()
 
@@ -22,8 +19,8 @@ def get_text_messages(message):
 
 @bot.message_handler(content_types=['voice'])
 def solve_voice_message(message):
-    if(not is_started):
-        bot.send_message(message.from_user.id, "Activate me with /start first")
+    if(not listener.doListen == False):
+        bot.send_message(message.from_user.id, "Activate me with /start first!")
         return
     bot.send_message(message.from_user.id, "Recieved voice message, processing...")
     try:
@@ -43,8 +40,8 @@ def solve_voice_message(message):
 
 @bot.message_handler(content_types=['document'])
 def solve_audio_message(message):
-    if(not is_started):
-        bot.send_message(message.from_user.id, "Activate me with /start first")
+    if(listener.doListen == False):
+        bot.send_message(message.from_user.id, "Activate me with /start first!")
         return
     bot.send_message(message.from_user.id, "Recieved document message, processing...")
     try:
