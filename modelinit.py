@@ -5,6 +5,9 @@ import torch.nn as nn
 import numpy as np
 import torch.nn.functional as F
 
+
+#Here lie model settings of speech recognition system
+
 class SpeechRecognitionModel1(nn.Module):
     def __init__(self, num_classes):
         super(SpeechRecognitionModel1, self).__init__()
