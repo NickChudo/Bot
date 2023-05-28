@@ -1,17 +1,19 @@
 ## Speech To Text Telegram bot
 - Uses voice and audio messages to translate them into text.
-- Currently doesn't work with normal voice
-- Partially works with abnormal voice
-- Can be hosted and used by just launch (you need Telegram API key)
+- Currently doesn't work with normal voice.
+- Partially works with abnormal voice.
+- Can be hosted and used by just launch (you need Telegram API key).
 
 ## Technical info
-- Currently works with CPU and CUDA
-- Supports documents of WAV format
-- Supports Russian voice messages
+- Currently works with CPU and CUDA.
+- Supports documents of WAV format.
+- Supports Russian voice messages.
 
 ## TODO
-- Add support for video documents
-- Add support for short video messages
+- Add support for video documents.
+- Add support for short video messages.
+- Add Russian Localisation.
+- Precision upgrading via model updating.
 
 ## Libraries
 
