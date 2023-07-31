@@ -13,7 +13,7 @@ bot = telebot.TeleBot(key)
 samplerate = 16000 
 
 model = ModelInit(path='model.pth', device_type='cpu')
-listener = listeners.listener()
+listener = listeners.listener().listener()
 
 @bot.message_handler(content_types=['text'])
 def get_text_messages(message):
