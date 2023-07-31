@@ -1,6 +1,8 @@
 import telebot
 import soundfile as sf
 import listeners
+import json
+import sqlalchemy
 from modelinit import ModelInit
 
 keyfile = open('key.txt', 'r')
@@ -15,7 +17,8 @@ listener = listeners.listener()
 
 @bot.message_handler(content_types=['text'])
 def get_text_messages(message):
-    bot.send_message(message.from_user.id, listener.get_response_for_text_message(message.text))
+    listener.handle_user_input(message.text, message.from_user.id)
+    bot.send_message(message.from_user.id, listener.get_response_for_text_message(message.text, message.from_user.id))
 
 @bot.message_handler(content_types=['voice'])
 def solve_voice_message(message):
