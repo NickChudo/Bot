@@ -1,6 +1,7 @@
 #Class where you can put commands and message respondings
 class listener:
     doListen = False
+    doRecord = False
     messagelist = {}
     cmd_descriptions = {"Send me voice message" : "Recieve decrypted text message", "/start" : "Starts listener.", "/stop" : "Stops listener.", "/help" : "Get all commands."}
 
@@ -18,8 +19,13 @@ class listener:
             response += f"{i} : {self.cmd_descriptions[i]} \n"
         return response
 
+    def enable_recorder(self):
+        self.doListen = True
+        self.doRecord = True
+        return f"Recorder has been enabled, voice messages will be sent to disk into training dataset."
 
-    cmdlist = {"/start" : enable_listener, "/stop" : disable_listener, "/help" : get_current_commands}    
+
+    cmdlist = {"/start" : enable_listener, "/stop" : disable_listener, "/help" : get_current_commands, "/record" : enable_recorder}    
 
     #Приводит поступающие команды в соответствие с ответом
     def get_response_for_text_message(self, message):
