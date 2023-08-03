@@ -1,0 +1,10 @@
+{"help": {"Send me voice message": "Recieve decrypted text message",
+"/start": "Starts listener.",
+"/stop": "Stops listener.",
+"/help": "Get all commands.",
+"/ru": "Переключить бота на русский язык", 
+"/en": "Toggle Bot to English language"}, 
+"responses": 
+{"listener_disabled": "Listener has been disabled, no voice messages will get their response",
+"listener_enabled": "Listener has been enabled, you can send voice messages now"}
+}
