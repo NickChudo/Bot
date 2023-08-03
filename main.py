@@ -4,6 +4,7 @@ import listeners
 import json
 import sqlalchemy
 from modelinit import ModelInit
+from rulang_corr import corrector
 
 keyfile = open('key.txt', 'r')
 key = keyfile.readline()
@@ -11,7 +12,7 @@ keyfile.close()
 
 bot = telebot.TeleBot(key)
 samplerate = 16000 
-
+corrector_ = corrector()
 model = ModelInit(path='model.pth', device_type='cpu')
 listener = listeners.listener().listener()
 
@@ -22,7 +23,8 @@ def get_text_messages(message):
 
 @bot.message_handler(content_types=['voice'])
 def solve_voice_message(message):
-    if(listener.doListen == False):
+    listener.handle_user_input(None, message.from_user.id)
+    if(listener.current_users[message.from_user.id].doListen == False):
         bot.send_message(message.from_user.id, "Activate me with /start first!")
         return
     bot.send_message(message.from_user.id, "Recieved voice message, processing...")
@@ -43,7 +45,8 @@ def solve_voice_message(message):
 
 @bot.message_handler(content_types=['document'])
 def solve_audio_message(message):
-    if(listener.doListen == False):
+    listener.handle_user_input(None, message.from_user.id)
+    if(listener.current_users[message.from_user.id].doListen == False):
         bot.send_message(message.from_user.id, "Activate me with /start first!")
         return
     bot.send_message(message.from_user.id, "Recieved document message, processing...")
@@ -55,6 +58,7 @@ def solve_audio_message(message):
         data, samplerate = sf.read('1.wav')
         sf.write('buffer.wav',data, samplerate)
         returnal = model.predict('buffer.wav')
+        returnal = corrector_.correctize(returnal)
         if(len(returnal) == 0):
             bot.send_message(message.from_user.id, "Network has created empty response.")
             return
