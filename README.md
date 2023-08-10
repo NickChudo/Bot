@@ -8,11 +8,11 @@
 - Currently works with CPU and CUDA.
 - Supports documents of WAV format.
 - Supports Russian voice messages.
+- Has Russian Localisation.
 
 ## TODO
 - Add support for video documents.
 - Add support for short video messages.
-- Add Russian Localisation.
 - Precision upgrading via model updating.
 
 ## Libraries
